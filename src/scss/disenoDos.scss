@@ -24,6 +24,7 @@ $bg-color-font-banner:  rgb(255, 255, 255);
 //VARIABLE DE BUSCADOR-SEARCH
 $bg-color-search: #D40005;
 $bg-color-search-hover:#FF585C;
+$bg-color-fondo-search:#FF585C;
 
 /* CARDS VARIABLES */
 $bg-color-cards-productos:  #F7F7F7;
@@ -154,14 +155,17 @@ p, a, li{
 
 //BORDER DE BUSCADOR
 .border-color-search-boton{
-    border: 1.5px solid $bg-color-search;
+    border: 1.8px solid $bg-color-search;
     border-left: none;
 }
 .border-color-search-input{
-    border: 1.5px solid $bg-color-search;
+    border: 1.8px solid $bg-color-search;
 }
 .border-color-search:hover{
-    border: 1.5px solid $bg-color-search-hover;
+    border: 1.8px solid $bg-color-search-hover;
+}
+.fondo-search{
+    background: $bg-color-fondo-search;
 }
 
 //COLOR DE BORDES DE LAS CARDS
@@ -326,17 +330,23 @@ p, a, li{
 }
 
 // VARIABLES DE FUENTES DE NAVBAR 
-
-.font-navbar{
-    font-size: 15px;
-}
 .font-nav-sec{
-    font-size: 12px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    // font-weight: bold;
+    font-family: 'Poppins', sans-serif;
 }
-.font-categ{
-    font-size: 15px;
+.font-cates{
+    font-size: 18px;
     text-transform: uppercase;
-    letter-spacing: 1.1px;
+    // font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+.font-nav{
+    font-size: 18px;
+    letter-spacing: 1px;
+    // font-weight: bold;
+    font-family: 'Poppins', sans-serif;
 }
 
 //VARIABLES DE TITULOS GENERALES PARA TODA LA PAGINA
@@ -362,6 +372,7 @@ p, a, li{
 .font-foot{
     font-size: 15px;
 }
+
 
 .font-carrito{
     font-size: 24px;

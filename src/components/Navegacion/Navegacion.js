@@ -101,15 +101,15 @@ const Navegacion = (props) => {
 		setVisible(false);
 	};
 
-	if (loading) {
-		return (
-			<div className="preloading">
-				<div className="contenedor-preloading">
-					<Spin size="large" tip="Cargando la tienda..." className="spiner" />
-				</div>
-			</div>
-		);
-	}
+	// if (loading) {
+	// 	return (
+	// 		<div className="preloading">
+	// 			<div className="contenedor-preloading">
+	// 				<Spin size="large" tip="Cargando la tienda..." className="spiner" />
+	// 			</div>
+	// 		</div>
+	// 	);
+	// }
 
 	function valor(e) {
 		setBusqueda(e.target.value);
@@ -123,37 +123,20 @@ const Navegacion = (props) => {
 					<div className="top-menu row a3 container-prin">
 						<div className="col-lg-12 container-pages a4">
 							<Menu
-								className="navbar-menu-sesion float-right nav-font-pages a5 font-foot"
+								className="navbar-menu-sesion float-right nav-font-pages a5 "
 								/* theme="light" */
 								mode="horizontal"
 								defaultSelectedKeys={[ window.location.pathname ]}
 								inlineindent={0}
 							>
-								<Menu.Item className="nav-font-color nav-border-color a6" key="/">
-									<div className="centrar-nav" >Inicio</div>
-									<Link to="/" />
-									
-								</Menu.Item>
-								<Menu.Item className="nav-font-color nav-border-color a6" key="/productos">
-									<div className="centrar-nav" >Productos</div>
-									<Link to="/productos" />
-								</Menu.Item>
-								{ofertas.length ? (
-									<Menu.Item className="nav-font-color nav-border-color a6" key="/ofertas">
-										<div className="centrar-nav" >Ofertas</div>
-										<Link to="/ofertas" />
-									</Menu.Item>
-								) : (
-									<Menu.Item className="d-none" />
-								)}
-								<Menu.Item className="nav-font-color nav-border-color a6" key="/blog">
+								<Menu.Item className="nav-font-color nav-border-color font-nav-sec a6" key="/blog">
 									<div className="centrar-nav" >Blog</div>
 									<Link to="/blog" />
 								</Menu.Item>
 								{tienda.length === 0 ? (
 									<Menu.Item className="d-none" />
 								) : (
-									<Menu.Item className="nav-font-color nav-border-color a6" key="/quienes_somos">
+									<Menu.Item className="nav-font-color nav-border-color font-nav-sec a6" key="/quienes_somos">
 										<div className="centrar-nav" >Quiénes somos</div>
 										<Link to="/quienes_somos" />
 									</Menu.Item>
@@ -164,14 +147,16 @@ const Navegacion = (props) => {
 				</div>
 			</Header>
 		</Layout>
-		
 		{/* DIVISOR PARA EL INPUT  */}
 
 		<Layout className="layout  a0">
 			<Header className=" a1">
-				<div className="menuCon  a2">
+				<div className="menuCon a2">
 					<div className="top-menu row a3">
-						<div className="col-lg-9 row-logo-search">
+						<div className="col-lg-5">
+							<Categorias />
+						</div>
+						<div className="col-lg-2 row-logo-search">
 							<div className="row row-logo-search-2 ">
 									{!tienda.imagenLogo ? (
 										<div className="d-none" />
@@ -188,24 +173,11 @@ const Navegacion = (props) => {
 											</Link>
 										</div>
 									)}
-								<div className="col-lg-8 row input-search">
-									<Input
-										onChange={valor}
-										className="input-search border-color-search-input"
-									/>
-									
-									<Button
-										onClick={(value) => props.history.push(`/searching/${busqueda}`)}
-										className="boton-search border-color-search-boton"
-									>
-										<SearchOutlined style={{fontSize: 25}}/>
-									</Button>
-									
-								</div>
 							</div>
 						</div>
+
 						{/* INICIO DE AVATAR, TU CARRITO Y ENTRAR  */}
-						<div className="col-lg-3 a4 container-pages">
+						<div className="col-lg-5 row a4 containe-categorias d-flex justify-content-end">
 							<Menu
 								className="float-right navbar-menu-sesion a50"
 								/* theme="light" */
@@ -213,14 +185,26 @@ const Navegacion = (props) => {
 								defaultSelectedKeys={[ window.location.pathname ]}
 								inlineindent={0}
 							>
-								{!decoded || decoded.rol === true ? (
-									<Menu.Item key="" className="d-none" />
-								) : (
-									<Menu.Item className="nav-font-color-sesion a6 font-foot" key="/pedidos">
-										<div className="centrar-nav" >Mis compras</div>
-										<Link to="/pedidos" />
+								{/* COSAS IRRELEVANTES */}
+								<Menu.Item className="nav-font-color nav-border-color font-nav a6" key="/">
+									<div className="centrar-nav" >Inicio</div>
+									<Link to="/" />
+									
+								</Menu.Item>
+								<Menu.Item className="nav-font-color nav-border-color font-nav a6" key="/productos">
+									<div className="centrar-nav" >Productos</div>
+									<Link to="/productos" />
+								</Menu.Item>
+								{ofertas.length ? (
+									<Menu.Item className="nav-font-color nav-border-color font-nav a6" key="/ofertas">
+										<div className="centrar-nav" >Ofertas</div>
+										<Link to="/ofertas" />
 									</Menu.Item>
+								) : (
+									<Menu.Item className="d-none" />
 								)}
+
+								{/* INICIO DE CARRITO */}
 								{!decoded || decoded.rol === true ? (
 									<Menu.Item key="" className="d-none" />
 								) : (
@@ -248,12 +232,20 @@ const Navegacion = (props) => {
 											)
 										}
 									>
-										<Menu.Item key="" className="nav-font-color-sesion font-foot">
+										{!decoded || decoded.rol === true ? (
+											<Menu.Item key="" className="d-none" />
+										) : (
+											<Menu.Item className="nav-font-color-sesion a6 font-nav" key="/pedidos">
+												<ShoppingOutlined />Mis compras
+												<Link to="/pedidos" />
+											</Menu.Item>
+										)}
+										<Menu.Item key="" className="nav-font-color-sesion font-nav">
 											<SettingOutlined />Mi cuenta<Link to="/perfiles" />
 										</Menu.Item>
 										<Menu.Item>
 											<div
-												className="text-danger centrar-nav font-foot"
+												className="text-danger centrar-nav font-nav"
 												onClick={() => {
 													localStorage.removeItem('token');
 													firebase.auth().signOut();
@@ -281,12 +273,12 @@ const Navegacion = (props) => {
 											)
 										}
 									>
-										<Menu.Item key="" className="font-foot a6">
+										<Menu.Item key="" className="font-nav a6">
 											<SettingOutlined />Panel de administrador<Link to="/admin" />
 										</Menu.Item>
 										<Menu.Item key="" className=" a6">
 											<div
-												className="text-danger centrar-nav font-foot"
+												className="text-danger centrar-nav font-nav"
 												onClick={() => {
 													localStorage.removeItem('token');
 													firebase.auth().signOut();
@@ -310,6 +302,9 @@ const Navegacion = (props) => {
 								) : (
 									<Menu.Item key="" className="d-none" />
 								)}
+
+								
+								
 							</Menu>
 						</div>
 						{/* FIN DE AVATAR, TU CARRITO Y ENTRAR  */}
@@ -363,18 +358,32 @@ const Navegacion = (props) => {
 				</div>
 			</Header>
 		</Layout>
-
-		{/* <Layout className="layout navbar-menu-general a00">
-			<Header className="navbar-menu-general a1">
-				<div className="menuCon navbar-menu-general a2">
-					<div className="top-menu row a3 container-prin">
-						<div className="col-lg-12 containe-categorias">
-							<Categorias />
+		
+		<div className="d-none d-lg-block ">
+		<Layout className="layout a01 ">
+			<Header className="fondo-search a1">
+				<div className="menuCon a2">
+					<div className="top-menu row a3 ">
+						<div className="col-lg-12 a4 containe-categorias">
+							<div className="row input-search d-flex justify-content-center">
+								<Input
+									onChange={valor}
+									className="input-search border-color-search-input"
+								/>
+								
+								<Button
+									onClick={(value) => props.history.push(`/searching/${busqueda}`)}
+									className="boton-search border-color-search-boton"
+								>
+									<SearchOutlined style={{fontSize: 25}}/>
+								</Button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</Header>
-		</Layout> */}
+		</Layout>
+		</div>
 
 		</div>
 	);
