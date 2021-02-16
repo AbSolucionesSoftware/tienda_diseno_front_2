@@ -4,40 +4,40 @@ $color-blog: #ffff;
 
 /* NAVBAR VARIABLES */
 /* $bg-color-navbar: #B11F24; */
-$bg-color-navbar:  #D40005;
+$bg-color-navbar:  #ffffff;
 $bg-color-navbar-active: #000000;
 $border-color-active: #000000;
 /* $border-color-navbar: #B11F24; */
 $font-color-navbar: rgb(0, 0, 0);
-$font-color-navbar-hover: #CC262A;
-$font-color-navbar-active: #FF585C;
+$font-color-navbar-hover: #000000;
+$font-color-navbar-active: #a39c9c;
 
 /* NAVBAR CATEGORIAS VARIABLES */
 $bg-color-navbar-categorias:  #FFFFFF;
-$font-color-navbar-categorias: #CC262A;
-$font-color-navbar-categorias-hover: #FF585C;
+$font-color-navbar-categorias: #000000;
+$font-color-navbar-categorias-hover: #a39c9c;
 
 //MINI BANNER SOBRE FOOTER
-$bg-color-banner: #D40005;
+$bg-color-banner: #000000;
 $bg-color-font-banner:  rgb(255, 255, 255);
 
 //VARIABLE DE BUSCADOR-SEARCH
-$bg-color-search: #D40005;
-$bg-color-search-hover:#FF585C;
-$bg-color-fondo-search:#FF585C;
+$bg-color-search: #bdb4b4;
+$bg-color-search-hover:#FFFFFF;
+$bg-color-fondo-search:#000000;
 
 /* CARDS VARIABLES */
 $bg-color-cards-productos:  #F7F7F7;
 
 /* SPINER VARIABLES */
-$color-spiner: #CC262A;
+$color-spiner: #000000;
 
 /* BUTTONS VARIABLES */
-$color-botones: #D40005;
-$color-botones-hover: #CC262A;
+$color-botones: #000000;
+$color-botones-hover: #bdb4b4;
 $color-botones-font:  #F7F7F7;
-$color-botones-secundario: #FF585C;
-$color-botones-secundario-text: #000000;
+$color-botones-secundario: #000000;
+$color-botones-secundario-text: #ffffff;
 $color-botones-secundario-border: #CC262A;
 $color-botones-sec-hover: #f8f8f8;
 
@@ -109,7 +109,7 @@ p, a, li{
     border-bottom: none!important; */
 }
 .nav-font-color-sesion:hover{
-    color: $bg-color-navbar!important;
+    color: $bg-color-navbar-active!important;
     border-bottom: 3px solid white!important;
     /* border-top: 2px solid $border-color-active!important;
     border-bottom: none!important; */
