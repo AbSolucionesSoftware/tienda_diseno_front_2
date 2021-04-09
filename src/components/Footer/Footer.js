@@ -57,7 +57,7 @@ const FooterPage = (props) => {
 				<div end="xs" id="foot">
 					<div className="row footer-font-color">
 						<div className="col-lg-3  d-sm-text-center">
-							{datosContx.tienda.length > 0 && datosContx.tienda[0].imagenLogo ? (
+							{/* {datosContx.tienda.length > 0 && datosContx.tienda[0].imagenLogo ? (
 								<div className="contenedor-logo">
 									<div className="logos">
 										<img
@@ -67,7 +67,7 @@ const FooterPage = (props) => {
 										/>
 									</div>
 								</div>
-							) : null}
+							) : null} */}
 							{/* <h6>{tienda.nombre !== '' ? tienda.nombre : ""}</h6> */}
 							{datosContx.tienda.length > 0 && datosContx.tienda[0].telefono ? (
 								<div className="row mt-3">
