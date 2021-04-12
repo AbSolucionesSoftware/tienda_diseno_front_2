@@ -15,7 +15,7 @@ import {
 	SettingOutlined
 } from '@ant-design/icons';
 import './footer.scss';
-import '../../scss/variables.scss';
+/* import '../../scss/variables.scss'; */
 import { MenuContext } from '../../context/carritoContext';
 import { Fragment } from 'react';
 
