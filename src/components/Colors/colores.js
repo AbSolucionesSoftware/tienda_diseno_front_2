@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Button, Popover, Radio, Space } from 'antd';
+import { Button, notification, Popover, Radio, Space } from 'antd';
 import { FormatPainterOutlined } from '@ant-design/icons';
 import { MenuContext } from '../../context/carritoContext';
 import { SketchPicker } from 'react-color';
@@ -234,6 +234,10 @@ export default function ColorCustomizer() {
 			})
 			.then((res) => {
 				setLoading(false);
+				notification.success({
+					message: 'Cambios realizados',
+					duration: 2
+				});
 				handleVisibleChange();
 			})
 			.catch((res) => {
