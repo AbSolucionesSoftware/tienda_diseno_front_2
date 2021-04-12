@@ -80,16 +80,19 @@ p, a, li{
 }
 
 /* NAVBAR STYLES */
-.navbar-menu-general{
+/* .navbar-menu-general{
     background-color: $bg-color-navbar;
+} */
+.navbar-menu-sesion {
+    border-bottom:  none;
 }
-.navbar-menu-sesion > .ant-menu-item-selected {
+/* .navbar-menu-sesion > .ant-menu-item-selected {
     color: $bg-color-navbar!important;
     border-bottom:  solid white!important;
-}
-.navbar-menu-general > .ant-menu-item-selected{
+} */
+/* .navbar-menu-general > .ant-menu-item-selected{
     background-color: $bg-color-navbar-active!important;
-}
+} */
 .drawer-background .ant-drawer-body{
     background-color: $bg-color-navbar;
     border-color: rgb(255, 255, 255);
@@ -98,33 +101,28 @@ p, a, li{
     background-color: $bg-color-navbar;
     border-color: rgb(255, 255, 255);
 }
-.nav-font-color{
+/* .nav-font-color{
     color: $font-color-navbar;
-   /*  border-bottom: none!important; */
-} 
-.nav-font-color:hover{
+}  */
+/* .nav-font-color:hover{
     color: $font-color-navbar-hover!important;
     border-bottom: 3px solid $border-color-active!important;
-    /* border-top: 2px solid $border-color-active!important;
-    border-bottom: none!important; */
-}
-.nav-font-color-sesion:hover{
+} */
+/* .nav-font-color-sesion:hover{
     color: $bg-color-navbar-active!important;
     border-bottom: 3px solid white!important;
-    /* border-top: 2px solid $border-color-active!important;
-    border-bottom: none!important; */
-}
+} */
 .menu-responsivo-icon{
     color: $font-color-navbar;
 }
 
 
 /* NAVBAR CATEGORIAS STYLES */
-.categorias-navbar{
+/* .categorias-navbar{
     background-color: $bg-color-navbar-categorias;
-}
+} */
 .categorias-navbar .ant-menu-submenu-title{
-    color: $font-color-navbar-categorias!important;
+    /* color: $font-color-navbar-categorias!important; */
     font-weight: bold!important;
 }
 .categorias-navbar > .ant-menu-submenu-selected{
@@ -137,21 +135,18 @@ p, a, li{
 }
 .nav-font-color-categorias{
     font-weight: bold;
-    color: $font-color-navbar-categorias;
+    /* color: $font-color-navbar-categorias; */
     border-bottom: none!important;
 } 
-.nav-font-color-categorias:hover{
+/* .nav-font-color-categorias:hover{
     color: $font-color-navbar-categorias-hover!important;
-}
-.nav-font-color-categorias:hover{
+} */
+/* .nav-font-color-categorias::before{
     color: $font-color-navbar-categorias-hover!important;
-}
-.nav-font-color-categorias::before{
+} */
+/* .container-subcategorias-nav > .ant-menu-submenu-title:hover{
     color: $font-color-navbar-categorias-hover!important;
-}
-.container-subcategorias-nav > .ant-menu-submenu-title:hover{
-    color: $font-color-navbar-categorias-hover!important;
-}
+} */
 
 //BORDER DE BUSCADOR
 .border-color-search-boton{
@@ -169,9 +164,9 @@ p, a, li{
 }
 
 //COLOR DE BORDES DE LAS CARDS
-.contenedor-card-producto-principal, .contenedor-card-producto-secundario, .contenedor-card-oferta-gigante, .item-menu-paginas{
+/* .contenedor-card-producto-principal, .contenedor-card-producto-secundario, .contenedor-card-oferta-gigante, .item-menu-paginas{
     border-right: 1px solid #e0e0e0;
-}
+} */
 
 /* SEPARADORES */
 
@@ -187,7 +182,7 @@ p, a, li{
 /* CARDS */
 .contenedor-card-body > .ant-card-body{
     padding: 0px!important;
-    background-color: $bg-color-cards-productos; 
+    /* background-color: $bg-color-cards-productos;  */
     min-height: 90px;
 }
 .mini-contenedor-card-body > .ant-card-body{
