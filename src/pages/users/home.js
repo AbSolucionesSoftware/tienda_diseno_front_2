@@ -41,7 +41,7 @@ export default function Home(props) {
 			{/* <OfertasIzquierda /> */}
 			{/* <OfertasDerecha /> */}
 			{/* <OfertasCentro /> */}
-			<BannerInformativo />
+			{/* <BannerInformativo /> */}
 			
 		</div>
 	);
