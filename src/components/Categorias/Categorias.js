@@ -152,7 +152,6 @@ const Categorias = (props) => {
 						{temporadas_nav}
 					</SubMenu>
 				)}
-				{console.log(datosContx.navbar.genero)}
 				{datosContx.navbar.genero.length === 1 && datosContx.navbar.genero[0]._id === 'Ninguno' ? null : (
 					<SubMenu
 					title="Género"
