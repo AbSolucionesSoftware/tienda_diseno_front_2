@@ -107,7 +107,7 @@ function BusquedaCategorias(props) {
 		() => {
 			obtenerFiltrosDivididos(categoria, subcategoria, temporada, genero);
 		},
-		[ props ]
+		[ props.location ]
 	);
 
 	const useStyles = makeStyles({

@@ -270,6 +270,11 @@ export default function ColorCustomizer() {
 			.catch((res) => {
 				console.log(res);
 				setLoading(false);
+				notification.error({
+					message: 'Hubo un error',
+					duration: 2
+				});
+				handleVisibleChange();
 			});
 	};
 
