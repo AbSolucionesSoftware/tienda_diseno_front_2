@@ -15,7 +15,6 @@ import { makeStyles } from '@material-ui/styles';
 import { MenuContext } from '../../../../context/carritoContext';
 const BgElement = Element.BgElement;
 
-
  function Banner_Largo(props) {
     const {banner, imagenLocal } = props;
     const { colores } = useContext(MenuContext);

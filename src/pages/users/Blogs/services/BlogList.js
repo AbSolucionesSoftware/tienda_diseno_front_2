@@ -20,11 +20,10 @@ export default function BlogList(props) {
 	const [ loading, setLoading ] = useState(false);
 	const [ blogs, setBlogs ] = useState([]);
 	const { colores } = useContext(MenuContext);
-	console.log(colores.bodyPage.text);
 	const useStyles = makeStyles({
 		text: {
-			color: colores.bodyPage.text
-		}
+			color: `${colores.bodyPage.text}!important`
+		},
 	});
 	const classes = useStyles();
 
@@ -55,7 +54,7 @@ export default function BlogList(props) {
 	return (
 		<Spin size="large" spinning={loading}>
 			<div id="blog" className="container">
-				<p className={"font-prin text-center p-3" + classes.text }>¡Nuestro Blog!</p>
+				<p className={"font-prin text-center p-3 " + classes.text}>¡Nuestro Blog!</p>
 				<div className="container-fluid bg-white shadow-lg">
 					<div id="cards">
 						<BlogsList2 blogs={blogs} setLoading={setLoading} />

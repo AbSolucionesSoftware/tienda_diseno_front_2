@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import clienteAxios from '../../../config/axios';
 import jwt_decode from 'jwt-decode';
 import DetallesPedido from './detalles';
@@ -10,6 +10,8 @@ import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-de
 import aws from '../../../config/aws';
 import Spin from '../../../components/Spin';
 import ApartadoMultiple from './apartadoMultiple';
+import { makeStyles } from '@material-ui/styles';
+import { MenuContext } from '../../../context/carritoContext';
 
 const { TabPane } = Tabs;
 const { confirm } = Modal;
@@ -26,6 +28,14 @@ export default function PedidosUsuario(props) {
 	//modal del pedido
 	const [ detallePedido, setDetallePedido ] = useState({});
 	const [ detalleApartado, setDetalleApartado ] = useState({});
+
+	const { colores } = useContext(MenuContext);
+    const useStyles = makeStyles({
+		text: {
+			color: `${colores.bodyPage.text}!important`
+		},
+	});
+    const classes = useStyles();
 
 	const showModal = (e) => {
 		setVisible(e);
@@ -159,7 +169,7 @@ export default function PedidosUsuario(props) {
 	return (
 		<Spin spinning={loading}>
 			<div className="container">
-				<h4 className="text-center m-3">Mis Compras</h4>
+				<h4 className={"text-center m-3 " + classes.text}>Mis Compras</h4>
 				<Tabs
 					centered
 					className="shadow bg-white rounded tabs-colors"

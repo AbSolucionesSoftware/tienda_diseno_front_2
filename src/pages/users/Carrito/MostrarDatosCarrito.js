@@ -126,7 +126,7 @@ function MostrarDatosProductos(props) {
 
 	return (
 		<Spin spinning={loading}>
-			<div className="mt-5">
+			<div className="mt-5 rounded">
 				<h1 className="principal navbar-menu-general font-carrito">Bievenido a tu carrito {cliente.nombre}</h1>
 				<List
 					itemLayout="horizontal"
