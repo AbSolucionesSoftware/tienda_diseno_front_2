@@ -18,6 +18,7 @@ import './footer.scss';
 /* import '../../scss/variables.scss'; */
 import { MenuContext } from '../../context/carritoContext';
 import { Fragment } from 'react';
+import { makeStyles } from '@material-ui/styles';
 
 const { Footer } = Layout;
 
@@ -33,7 +34,18 @@ function Jwt(token) {
 }
 
 const FooterPage = (props) => {
-	const { datosContx } = useContext(MenuContext);
+	const { datosContx, colores } = useContext(MenuContext);
+
+	const useStyles = makeStyles({
+		background: {
+			backgroundColor: colores.footer.background,
+			"& .text-color": {
+				color: `${colores.footer.text}!important`
+			}
+		}
+	});
+	
+	const classes = useStyles();
 
 	if (!datosContx.navbar || !datosContx.navbar.filtroNav) {
 		return null;
@@ -42,7 +54,7 @@ const FooterPage = (props) => {
 	const categorias_foot = datosContx.navbar.filtroNav.map((categoria, index) => {
 		if (index <= 14) {
 			return (
-				<Button type="link" className="footer-font-color" key={categoria.categoria}>
+				<Button type="link" className="footer-font-color text-color" key={categoria.categoria}>
 					<Link className="font-foot" to={`/filtros/null/${categoria.categoria}/null/null`}>
 						{categoria.categoria}
 					</Link>
@@ -53,7 +65,7 @@ const FooterPage = (props) => {
 
 	return (
 		<Layout className="layout">
-			<Footer className="bg-footer">
+			<Footer className={"bg-footer " + classes.background}>
 				<div end="xs" id="foot">
 					<div className="row footer-font-color">
 						<div className="col-lg-3  d-sm-text-center">
@@ -71,10 +83,10 @@ const FooterPage = (props) => {
 							{/* <h6>{tienda.nombre !== '' ? tienda.nombre : ""}</h6> */}
 							{datosContx.tienda.length > 0 && datosContx.tienda[0].telefono ? (
 								<div className="row mt-3">
-									<PhoneOutlined className="mt-1" style={{ fontSize: 55, marginLeft: 5 }} />
+									<PhoneOutlined className="mt-1 text-color" style={{ fontSize: 55, marginLeft: 5 }} />
 									<div className="px-3 mt-2">
-										<p className="font-foot">¿Tienes preguntas? ¡Contáctanos!:</p>
-										<h1 className="footer-font-color" style={{ fontSize: 20 }}>
+										<p className="font-foot text-color">¿Tienes preguntas? ¡Contáctanos!:</p>
+										<h1 className="footer-font-color text-color" style={{ fontSize: 20 }}>
 											{datosContx.tienda[0].telefono}{' '}
 										</h1>
 									</div>
@@ -84,13 +96,13 @@ const FooterPage = (props) => {
 							<div className="mt-3 font-foot">
 								{datosContx.tienda.length > 0 && datosContx.tienda[0].direccion.length > 0 ? (
 									<Fragment>
-										<p style={{ fontWeight: 'bold' }}>Datos de contacto:</p>
+										<p style={{ fontWeight: 'bold' }} className="text-color">Datos de contacto:</p>
 										<div>
-											<p>
+											<p className="text-color">
 												{datosContx.tienda[0].direccion[0].calle_numero}, Col.{' '}
 												{datosContx.tienda[0].direccion[0].colonia},{' '}
 											</p>
-											<p>
+											<p className="text-color">
 												{datosContx.tienda[0].direccion[0].ciudad},{' '}
 												{datosContx.tienda[0].direccion[0].estado}
 											</p>
@@ -105,7 +117,7 @@ const FooterPage = (props) => {
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<FacebookFilled id="is" style={{ fontSize: 33, color: 'gray' }} />
+											<FacebookFilled id="is" style={{ fontSize: 33 }} className="text-color" />
 										</a>
 									) : null}
 									{datosContx.tienda.length > 0 && datosContx.tienda[0].linkInsta !== '' ? (
@@ -114,7 +126,7 @@ const FooterPage = (props) => {
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<InstagramFilled id="is" style={{ fontSize: 33, color: 'gray' }} />
+											<InstagramFilled id="is" style={{ fontSize: 33 }} className="text-color" />
 										</a>
 									) : null}
 
@@ -124,7 +136,7 @@ const FooterPage = (props) => {
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<TwitterCircleFilled id="is" style={{ fontSize: 33, color: 'gray' }} />
+											<TwitterCircleFilled id="is" style={{ fontSize: 33 }} className="text-color" />
 										</a>
 									) : null}
 								</div>
@@ -133,18 +145,18 @@ const FooterPage = (props) => {
 						{datosContx.tienda.length > 0 && datosContx.tienda[0].diasHorariosEmpresas ? (
 							<div className="col-lg-3 mt-4">
 								<div className="container">
-									<p className="font-foot">
+									<p className="font-foot text-color">
 										<span className="font-weight-bold">Horarios de Atención:</span>
 									</p>
 									<div
-										className="font-foot"
+										className="font-foot text-color"
 										dangerouslySetInnerHTML={{ __html: datosContx.tienda[0].diasHorariosEmpresas }}
 									/>
 								</div>
 							</div>
 						) : null}
 						<div className="col-lg-4 mt-lg-4 d-none d-lg-block">
-							<p className="font-foot" style={{ fontWeight: 'bold' }}>
+							<p className="font-foot text-color" style={{ fontWeight: 'bold' }}>
 								Encuéntralo más rápido
 							</p>
 							<div style={{ columnCount: 2 }}>
@@ -152,13 +164,13 @@ const FooterPage = (props) => {
 							</div>
 						</div>
 						<div className="col-lg-2 mt-4 d-none d-lg-block" style={{ columnCount: 1 }}>
-							<p className="font-foot" style={{ fontWeight: 'bold' }}>
+							<p className="font-foot text-color" style={{ fontWeight: 'bold' }}>
 								Atención al cliente
 							</p>
 							{datosContx.tienda.length > 0 && datosContx.tienda[0].imagenCorp !== '' ? (
 								<Link to="/quienes_somos">
-									<Button className="footer-font-color font-foot" id="is" type="link">
-										<UserOutlined className="footer-font-color" />
+									<Button className="footer-font-color font-foot text-color" id="is" type="link">
+										<UserOutlined className="footer-font-color text-color" />
 										Conócenos
 									</Button>
 								</Link>
@@ -166,40 +178,40 @@ const FooterPage = (props) => {
 
 							{datosContx.tienda.length > 0 && datosContx.tienda[0].politicas ? (
 								<HashLink to="/politicas#privacidad">
-									<Button className="footer-font-color font-foot" id="is" type="link">
-										<KeyOutlined className="footer-font-color" />
+									<Button className="footer-font-color font-foot text-color" id="is" type="link">
+										<KeyOutlined className="footer-font-color text-color" />
 										Aviso de Privacidad
 									</Button>
 								</HashLink>
 							) : null}
 							{datosContx.tienda.length > 0 && datosContx.tienda[0].politicasDescuentos ? (
 								<HashLink to="/politicas#descuento">
-									<Button className="footer-font-color font-foot" id="is" type="link">
-										<KeyOutlined className="footer-font-color" />
+									<Button className="footer-font-color font-foot text-color" id="is" type="link">
+										<KeyOutlined className="footer-font-color text-color" />
 										Políticas de Descuento
 									</Button>
 								</HashLink>
 							) : null}
 							{datosContx.tienda.length > 0 && datosContx.tienda[0].politicasDevolucion ? (
 								<HashLink to="/politicas#devolucion">
-									<Button className="footer-font-color font-foot" id="is" type="link">
-										<KeyOutlined className="footer-font-color" />
+									<Button className="footer-font-color font-foot text-color" id="is" type="link">
+										<KeyOutlined className="footer-font-color text-color" />
 										Políticas de Devolución
 									</Button>
 								</HashLink>
 							) : null}
 							{datosContx.tienda.length > 0 && datosContx.tienda[0].politicasVentas ? (
 								<HashLink to="/politicas#ventas">
-									<Button className="footer-font-color font-foot" id="is" type="link">
-										<KeyOutlined className="footer-font-color" />
+									<Button className="footer-font-color font-foot text-color" id="is" type="link">
+										<KeyOutlined className="footer-font-color text-color" />
 										Políticas de Ventas
 									</Button>
 								</HashLink>
 							) : null}
 							{datosContx.tienda.length > 0 && datosContx.tienda[0].politicasEnvios ? (
 								<HashLink to="/politicas#envios">
-									<Button className="footer-font-color font-foot" id="is" type="link">
-										<KeyOutlined className="footer-font-color" />
+									<Button className="footer-font-color font-foot text-color" id="is" type="link">
+										<KeyOutlined className="footer-font-color text-color" />
 										Políticas de Envíos
 									</Button>
 								</HashLink>
@@ -207,15 +219,15 @@ const FooterPage = (props) => {
 
 							{token && decoded['rol'] === false ? (
 								<Link to="/perfiles">
-									<Button className="footer-font-color font-foot" id="is" type="link">
-										<SettingOutlined className="footer-font-color" />
+									<Button className="footer-font-color font-foot text-color" id="is" type="link">
+										<SettingOutlined className="footer-font-color text-color" />
 										Mi cuenta
 									</Button>
 								</Link>
 							) : (
 								<Link to="/entrar">
-									<Button className="footer-font-color font-foot" id="is" type="link">
-										<SettingOutlined className="footer-font-color" />
+									<Button className="footer-font-color font-foot text-color" id="is" type="link">
+										<SettingOutlined className="footer-font-color text-color" />
 										Mi cuenta
 									</Button>
 								</Link>

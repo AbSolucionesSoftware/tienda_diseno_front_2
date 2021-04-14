@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import clienteAxios from '../../../config/axios';
 import { notification, Result, Row } from 'antd';
 import Pagination from '../../../components/Pagination/pagination';
@@ -6,11 +6,14 @@ import queryString from 'query-string';
 import './Cards_Normales/card_producto.scss';
 import Card_Producto from './Cards_Normales/card_producto';
 import Spin from '../../../components/Spin';
+import { makeStyles } from '@material-ui/styles';
+import { MenuContext } from '../../../context/carritoContext';
 
 function ConsultaProductos(props) {
 	const { location, history } = props.propiedades;
 	const { page = 1 } = queryString.parse(location.search);
 	const [ productosPaginacion, setProductosPaginacion ] = useState([]);
+	const { colores } = useContext(MenuContext);
 
 	const [ productos, setProductos ] = useState([]);
 	const [ loading, setLoading ] = useState(false);
@@ -52,23 +55,34 @@ function ConsultaProductos(props) {
 			});
 	}
 
+	const useStyles = makeStyles({
+		background: {
+			backgroundColor: colores.bodyPage.background,
+			'& .text-color': {
+				color: colores.bodyPage.text
+			}
+		}
+	});
+
+	const classes = useStyles();
+
 	const render = productos.map((productos) => {
 		return (<Card_Producto key={productos._id} productos={productos} />);
 	});
 
 	if (!productos) {
 		return (
-			<div className="w-100 d-flex justify-content-center align-items-center">
-				<Result status="404" title="Aun no hay ofertas" />
+			<div className={"w-100 d-flex justify-content-center align-items-center " + classes.background}>
+				<Result status="404" title="Aun no hay ofertas text-color" />
 			</div>
 		);
 	}
 
 	return (
 		<Spin spinning={loading}>
-			<div className="contenedor-home-background">
+			<div className={"contenedor-home-background " + classes.background}>
 				<div className="row float-left">
-					<p className="font-prin mb-0 text-center">¡Conoce nuestros productos!</p>
+					<p className="font-prin mb-0 text-center text-color">¡Conoce nuestros productos!</p>
 				</div>
 			</div>
 			<div className="d-flex justify-content-center align-items-center">
