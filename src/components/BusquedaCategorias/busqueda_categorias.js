@@ -5,6 +5,7 @@ import Card_Producto from '../../pages/users/Productos/Cards_Normales/card_produ
 import Spin from '../Spin';
 import './busqueda_categorias.scss';
 import { MenuContext } from '../../context/carritoContext';
+import { makeStyles } from '@material-ui/styles';
 
 function BusquedaCategorias(props) {
 	const categoria = props.match.params.categoria;
@@ -14,7 +15,7 @@ function BusquedaCategorias(props) {
 
 	const [ loading, setLoading ] = useState(false);
 	const [ resultado, setResultado ] = useState([]);
-	const { reloadFilter, setReloadFilter } = useContext(MenuContext);
+	const { reloadFilter, setReloadFilter, colores } = useContext(MenuContext);
 	const [ todosProductos, setTodosProductos ] = useState(false);
 
 
@@ -109,21 +110,34 @@ function BusquedaCategorias(props) {
 		[ props ]
 	);
 
+	const useStyles = makeStyles({
+		text: {
+			"& .text-color": {
+				color: colores.bodyPage.text
+			},
+			"& .ant-breadcrumb-separator": {
+				color: colores.bodyPage.text,
+			}
+		},
+	});
+	
+	const classes = useStyles();
+
 	const result = resultado.map((productos) => <Card_Producto key={productos._id} productos={productos} />);
 
 	return (
 		<Fragment>
 			<Spin spinning={loading}>
-				<div className="my-4 mx-3">
-					<h3 className="d-inline mr-3 font-prin">{resultado.length} resultados en: </h3>
+				<div className={"my-4 mx-3 " + classes.text}>
+					<h3 className="d-inline mr-3 font-prin text-color">{resultado.length} resultados en: </h3>
 					{todosProductos ? (
-						<h3  className="d-inline font-prin">Todos los productos</h3>
+						<h3  className="d-inline font-prin text-color">Todos los productos</h3>
 					): (
-						<Breadcrumb separator=">" className="d-inline font-prin">
-							<Breadcrumb.Item className="bread-font">{categoria !== 'null' ? categoria : null}</Breadcrumb.Item>
-							<Breadcrumb.Item className="bread-font">{subcategoria !== 'null' ? subcategoria : null}</Breadcrumb.Item>
-							<Breadcrumb.Item className="bread-font">{temporada !== 'null' ? temporada : null}</Breadcrumb.Item>
-							<Breadcrumb.Item className="bread-font">{genero !== 'null' ? genero : null}</Breadcrumb.Item>
+						<Breadcrumb separator=">" className="d-inline font-prin text-color">
+							<Breadcrumb.Item className="bread-font text-color">{categoria !== 'null' ? categoria : null}</Breadcrumb.Item>
+							<Breadcrumb.Item className="bread-font text-color">{subcategoria !== 'null' ? subcategoria : null}</Breadcrumb.Item>
+							<Breadcrumb.Item className="bread-font text-color">{temporada !== 'null' ? temporada : null}</Breadcrumb.Item>
+							<Breadcrumb.Item className="bread-font text-color">{genero !== 'null' ? genero : null}</Breadcrumb.Item>
 						</Breadcrumb>
 					)}
 					<div>

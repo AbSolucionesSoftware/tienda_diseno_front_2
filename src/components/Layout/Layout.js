@@ -62,6 +62,10 @@ export default function LayoutBasic(props) {
 									text: colores.bodyPage.card.text,
 									background: colores.bodyPage.card.background,
 								}
+							},
+							footer: {
+								text: colores.footer.text,
+								background: colores.footer.background
 							}
 						});
 					}
@@ -93,7 +97,7 @@ export default function LayoutBasic(props) {
 		<div className="body">
 			<ColorCustomizer />
 			<Layout>
-				<div className="cuerpo bg-layout">
+				<div className={"cuerpo bg-layout "+ classes.background}>
 					<Layout>
 						<Navegacion />
 						{/* <Categorias /> */}

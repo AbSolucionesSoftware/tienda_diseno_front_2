@@ -26,6 +26,10 @@ export const MenuProvider = ({ children }) => {
         text: '#000000',
         background: '#F7F7F7'
       }
+    },
+    footer: {
+      text: '#ffffff',
+      background: '#3D3D3D',
     }
   });
 
