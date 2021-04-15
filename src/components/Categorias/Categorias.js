@@ -33,14 +33,14 @@ const Categorias = (props) => {
 	const useStyles = makeStyles({
 		navbar: {
 			backgroundColor: colores.navPrimary.background,
-			color: colores.navPrimary.text,
+			color: colores.navPrimary.text
 		},
 		hover: {
 			'& > .ant-menu-submenu-title:hover': {
-				color: `${colores.navPrimary.hoverText}!important`,
+				color: `${colores.navPrimary.hoverText}!important`
 			},
 			'& > .ant-menu-submenu-title': {
-				color: `${colores.navPrimary.text}!important`,
+				color: `${colores.navPrimary.text}!important`
 			}
 		}
 	});
@@ -57,7 +57,9 @@ const Categorias = (props) => {
 				title={categoria.categoria}
 				className={
 					'submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat font-cates ' +
-					classes.navbar + " " + classes.hover
+					classes.navbar +
+					' ' +
+					classes.hover
 				}
 				onTitleClick={(e) => {
 					if (e.key === categoria.categoria) {
@@ -137,38 +139,41 @@ const Categorias = (props) => {
 				triggerSubMenuAction="click"
 			>
 				{categorias_nav}
-				<SubMenu
-					title="Temporadas"
-					className={
-						'submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat font-cates ' +
-						classes.navbar + " " + classes.hover
-					}
-				>
-					{temporadas_nav}
-				</SubMenu>
-				{datosContx.navbar.genero.length > 0 ? (
+				{datosContx.navbar.temporadas.length === 1 && datosContx.navbar.temporadas[0]._id === '' ? null : (
 					<SubMenu
-						title="Género"
+						title="Temporadas"
 						className={
-							classes.hover + ' submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat font-cates ' +
-							classes.navbar
+							'submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat font-cates ' +
+							classes.navbar +
+							' ' +
+							classes.hover
 						}
 					>
-						<Menu.Item
-							className="font-cates"
-							onClick={() => {
-								props.history.push(
-									`/filtros/${temporadaSeleccionada}/${categoriaSeleccionada}/${subcategoriaSeleccionada}/Todos`
-								);
-								setGeneroSeleccionado('Todos');
-							}}
-						>
-							Todos
-						</Menu.Item>
-						{categorias_generos}
+						{temporadas_nav}
 					</SubMenu>
-				) : (
-					<Menu.Item className="d-none" />
+				)}
+				{datosContx.navbar.genero.length === 1 && datosContx.navbar.genero[0]._id === 'Ninguno' ? null : (
+					<SubMenu
+					title="Género"
+					className={
+						classes.hover +
+						' submenu-categoria nav-font-color-categorias container-subcategorias-nav size-submenu-cat font-cates ' +
+						classes.navbar
+					}
+				>
+					<Menu.Item
+						className="font-cates"
+						onClick={() => {
+							props.history.push(
+								`/filtros/${temporadaSeleccionada}/${categoriaSeleccionada}/${subcategoriaSeleccionada}/Todos`
+							);
+							setGeneroSeleccionado('Todos');
+						}}
+					>
+						Todos
+					</Menu.Item>
+					{categorias_generos}
+				</SubMenu>
 				)}
 			</Menu>
 		</Layout>

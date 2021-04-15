@@ -49,6 +49,10 @@ export default function ColorCustomizer() {
 				background: colores.bodyPage.card.background
 			}
 		};
+		let footer = {
+			text: colores.footer.text,
+			background: colores.footer.background
+		};
 		/* Definimos el componente seleccionado y aplicamos colores en cada caso */
 		switch (component) {
 			/* NAVBAR PRINCIPAL */
@@ -151,11 +155,24 @@ export default function ColorCustomizer() {
 					}
 				};
 				break;
+			case 'footerText':
+				footer = {
+					text: color.hex,
+					background: colores.footer.background
+				};
+				break;
+			case 'footerBackground':
+				footer = {
+					text: colores.footer.text,
+					background: color.hex
+				};
+				break;
 		}
 		setColores({
 			navPrimary,
 			navSecondary,
-			bodyPage
+			bodyPage,
+			footer
 		});
 	};
 	const handleChangeComponent = (e) => {
@@ -197,6 +214,12 @@ export default function ColorCustomizer() {
 			case 'cardText':
 				setColorPicker(colores.bodyPage.card.text);
 				break;
+			case 'footerText':
+				setColorPicker(colores.footer.text);
+				break;
+			case 'footerBackground':
+				setColorPicker(colores.footer.background);
+				break;
 		}
 	};
 
@@ -220,6 +243,10 @@ export default function ColorCustomizer() {
 					text: '#000000',
 					background: '#F7F7F7'
 				}
+			},
+			footer: {
+				text: '#ffffff',
+				background: '#3D3D3D'
 			}
 		});
 	};
@@ -243,6 +270,11 @@ export default function ColorCustomizer() {
 			.catch((res) => {
 				console.log(res);
 				setLoading(false);
+				notification.error({
+					message: 'Hubo un error',
+					duration: 2
+				});
+				handleVisibleChange();
 			});
 	};
 
@@ -273,7 +305,7 @@ export default function ColorCustomizer() {
 	const content_picker = (
 		<div>
 			<div className="row d-flex justify-content-around mb-2">
-				<div className="col-md-3">
+				<div className="col-md-2">
 					<h6>Navegación</h6>
 					<Radio.Group onChange={handleChangeComponent} value={component}>
 						<Radio style={styles.radio_style} value="navBackground">
@@ -287,7 +319,7 @@ export default function ColorCustomizer() {
 						</Radio>
 					</Radio.Group>
 				</div>
-				<div className="col-md-3">
+				<div className="col-md-2">
 					<h6>Búsqueda</h6>
 					<Radio.Group onChange={handleChangeComponent} value={component}>
 						<Radio style={styles.radio_style} value="navSecBackground">
@@ -301,7 +333,7 @@ export default function ColorCustomizer() {
 						</Radio>
 					</Radio.Group>
 				</div>
-				<div className="col-md-3">
+				<div className="col-md-2">
 					<h6>Fondo</h6>
 					<Radio.Group onChange={handleChangeComponent} value={component}>
 						<Radio style={styles.radio_style} value="bodyBackground">
@@ -315,13 +347,24 @@ export default function ColorCustomizer() {
 						</Radio>
 					</Radio.Group>
 				</div>
-				<div className="col-md-3">
+				<div className="col-md-2">
 					<h6>Productos</h6>
 					<Radio.Group onChange={handleChangeComponent} value={component}>
 						<Radio style={styles.radio_style} value="cardBackground">
 							Color fondo
 						</Radio>
 						<Radio style={styles.radio_style} value="cardText">
+							Color texto
+						</Radio>
+					</Radio.Group>
+				</div>
+				<div className="col-md-2">
+					<h6>Footer</h6>
+					<Radio.Group onChange={handleChangeComponent} value={component}>
+						<Radio style={styles.radio_style} value="footerBackground">
+							Color fondo
+						</Radio>
+						<Radio style={styles.radio_style} value="footerText">
 							Color texto
 						</Radio>
 					</Radio.Group>
