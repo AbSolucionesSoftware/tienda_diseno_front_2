@@ -73,63 +73,6 @@ export default function LayoutBasic(props) {
 	// 	[ decoded._id, token, setDatosContx, setLoading ]
 	// );
 
-	const obtenerInformacionTienda = useCallback(
-		async () => {
-			setLoading(true);
-			await clienteAxios
-				.get(`/home/${decoded._id ? decoded._id : null}`, {
-					headers: {
-						Authorization: `bearer ${token}`
-					}
-				})
-				.then((res) => {
-					const datos = res.data;
-					setDatosContx(datos);
-					setLoading(false);
-					if (datos.tienda.length > 0 && datos.tienda[0].colorPage) {
-						const colores = datos.tienda[0].colorPage;
-						setColores({
-							navPrimary: {
-								text: colores.navPrimary.text,
-								background: colores.navPrimary.background,
-								hoverText: colores.navPrimary.hoverText,
-							},
-							navSecondary: {
-								text: colores.navSecondary.text,
-								background: colores.navSecondary.background,
-								hoverText: colores.navSecondary.hoverText,
-							},
-							bodyPage: {
-								text: colores.bodyPage.text,
-								background: colores.bodyPage.background,
-								hoverText: colores.bodyPage.hoverText,
-								card: {
-									text: colores.bodyPage.card.text,
-									background: colores.bodyPage.card.background,
-								}
-							},
-							footer: {
-								text: colores.footer.text,
-								background: colores.footer.background
-							}
-						});
-					}
-				})
-				.catch((res) => {
-					console.log(res);
-					setLoading(false);
-				});
-		},
-		[ decoded._id, token, setDatosContx, setLoading ]
-	);
-
-	useEffect(
-		() => {
-			obtenerInformacionTienda();
-		},
-		[ obtenerInformacionTienda, active ]
-	);
-
 	const useStyles = makeStyles({
 		background: {
 			backgroundColor: colores.bodyPage.background
