@@ -39,12 +39,12 @@ const FooterPage = (props) => {
 	const useStyles = makeStyles({
 		background: {
 			backgroundColor: colores.footer.background,
-			"& .text-color": {
+			'& .text-color': {
 				color: `${colores.footer.text}!important`
 			}
 		}
 	});
-	
+
 	const classes = useStyles();
 
 	if (!datosContx.navbar || !datosContx.navbar.filtroNav) {
@@ -65,7 +65,7 @@ const FooterPage = (props) => {
 
 	return (
 		<Layout className="layout">
-			<Footer className={"bg-footer " + classes.background}>
+			<Footer className={'bg-footer ' + classes.background}>
 				<div end="xs" id="foot">
 					<div className="row footer-font-color">
 						<div className="col-lg-3  d-sm-text-center">
@@ -83,7 +83,10 @@ const FooterPage = (props) => {
 							{/* <h6>{tienda.nombre !== '' ? tienda.nombre : ""}</h6> */}
 							{datosContx.tienda.length > 0 && datosContx.tienda[0].telefono ? (
 								<div className="row mt-3">
-									<PhoneOutlined className="mt-1 text-color" style={{ fontSize: 55, marginLeft: 5 }} />
+									<PhoneOutlined
+										className="mt-1 text-color"
+										style={{ fontSize: 55, marginLeft: 5 }}
+									/>
 									<div className="px-3 mt-2">
 										<p className="font-foot text-color">¿Tienes preguntas? ¡Contáctanos!:</p>
 										<h1 className="footer-font-color text-color" style={{ fontSize: 20 }}>
@@ -96,7 +99,9 @@ const FooterPage = (props) => {
 							<div className="mt-3 font-foot">
 								{datosContx.tienda.length > 0 && datosContx.tienda[0].direccion.length > 0 ? (
 									<Fragment>
-										<p style={{ fontWeight: 'bold' }} className="text-color">Datos de contacto:</p>
+										<p style={{ fontWeight: 'bold' }} className="text-color">
+											Datos de contacto:
+										</p>
 										<div>
 											<p className="text-color">
 												{datosContx.tienda[0].direccion[0].calle_numero}, Col.{' '}
@@ -136,22 +141,42 @@ const FooterPage = (props) => {
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<TwitterCircleFilled id="is" style={{ fontSize: 33 }} className="text-color" />
+											<TwitterCircleFilled
+												id="is"
+												style={{ fontSize: 33 }}
+												className="text-color"
+											/>
 										</a>
 									) : null}
 								</div>
 							</div>
 						</div>
-						{datosContx.tienda.length > 0 && datosContx.tienda[0].diasHorariosEmpresas ? (
+						{datosContx.tienda.length > 0 && datosContx.tienda[0].horario.length > 0 ? (
 							<div className="col-lg-3 mt-4">
 								<div className="container">
 									<p className="font-foot text-color">
 										<span className="font-weight-bold">Horarios de Atención:</span>
 									</p>
-									<div
-										className="font-foot text-color"
-										dangerouslySetInnerHTML={{ __html: datosContx.tienda[0].diasHorariosEmpresas }}
-									/>
+									{datosContx.tienda[0].horario.map((horario) => {
+										if(horario.close){
+											return (
+												<div>
+													<p className="h6">
+														<b>{horario.dia}: </b> {horario.horarioInicial} -{' '}
+														{horario.horarioFinal}
+													</p>
+												</div>
+											);
+										}else{
+											return (
+												<div>
+													<p className="h6">
+														<b>{horario.dia}: NO HAY SERVICIO </b>
+													</p>
+												</div>
+											);
+										}
+									})}
 								</div>
 							</div>
 						) : null}
