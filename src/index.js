@@ -4,6 +4,7 @@ import 'antd/dist/antd.css'
 import App from './App';
 import { MenuProvider } from './context/carritoContext';
 
+
 ReactDOM.render(
   <MenuProvider>
     <App />
