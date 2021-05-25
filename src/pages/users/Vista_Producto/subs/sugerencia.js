@@ -8,7 +8,7 @@ import jwt_decode from 'jwt-decode';
 import { withRouter } from 'react-router-dom';
 import aws from '../../../../config/aws';
 import Spin from '../../../../components/Spin';
-import Estados_disponibles from '../../Consulta_covertura/estados_disponibles'
+// import Estados_disponibles from '../../Consulta_covertura/estados_disponibles'
 
 const { Option } = Select;
 const { Meta } = Card;
@@ -253,7 +253,7 @@ const Sugerencia = (props) => {
 	}
 	return (
 		<Spin spinning={loading}>
-			<div>
+			{/* <div>
 				{
 					dataEstados.todos !== true ? (
 						<div>
@@ -263,7 +263,7 @@ const Sugerencia = (props) => {
 						null
 					)
 				}
-			</div>
+			</div> */}
 			<div className="row mw-100 mt-3">
 				{!producto || !sugerencia ? (
 					<div />

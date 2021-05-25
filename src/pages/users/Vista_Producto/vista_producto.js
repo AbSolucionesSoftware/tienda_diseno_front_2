@@ -7,7 +7,7 @@ import Sugerencia from './subs/sugerencia';
 import Galeria from './Galeria_tienda/galeria';
 import TallasCantidades from './subs/cantidades_y_tallas';
 import InfoTienda from './Info_tienda/info-tienda';
-import Envio_General from '../Consulta_covertura/envio_general';
+// import Envio_General from '../Consulta_covertura/envio_general';
 import 'antd/dist/antd.css';
 import './vistas.scss';
 import { formatoMexico, agregarPorcentaje } from '../../../config/reuserFunction';
@@ -162,7 +162,7 @@ function VistaProductos(props) {
 									<FontAwesomeIcon icon={faTruck} style={{ fontSize: 15, marginRight: 10 }} />{' '}
 									<span>Costo del envío:</span> <span>${costoEnvio.costoEnvio}</span>
 								</p>
-								<Envio_General className="mt-3" />
+								{/* <Envio_General className="mt-3" /> */}
 								{costoEnvio.promocionEnvio ?  costoEnvio.descuento !== 0 ? (
 									<Alert
 										className="mt-3 font-vista-prod"
