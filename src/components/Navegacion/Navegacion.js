@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Layout, Menu, Button, Input, Drawer, Badge, Avatar, Spin } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
+import NavegacionResponsive from './NavegacionResponsive';
 import firebase from 'firebase/app';
 import './navegacion.scss';
 import 'firebase/auth';
@@ -11,7 +12,8 @@ import {
 	ShoppingOutlined,
 	SettingOutlined,
 	LogoutOutlined,
-	UserOutlined
+	UserOutlined,
+	CloseCircleOutlined
 } from '@ant-design/icons';
 import jwt_decode from 'jwt-decode';
 import RightMenu from './RightMenu';
@@ -28,6 +30,7 @@ const { SubMenu } = Menu;
 const Navegacion = (props) => {
 	const { loading, datosContx, colores } = useContext(MenuContext);
 	const [ visible, setVisible ] = useState(false);
+	const [openSearch, setOpenSearch] = useState(false)
 	const [ busqueda, setBusqueda ] = useState('');
 	const token = localStorage.getItem('token');
 	var decoded = Jwt(token);
@@ -45,6 +48,10 @@ const Navegacion = (props) => {
 
 	function valor(e) {
 		setBusqueda(e.target.value);
+	}
+
+	const openBusqueda = () => {
+		setOpenSearch(!openSearch);
 	}
 
 	const useStyles = makeStyles({
@@ -82,10 +89,10 @@ const Navegacion = (props) => {
 
 	return (
 		<div>
-			<Layout className="layout navbar-menu-general a00">
-				<Header className=" a1">
+			<Layout className="top-menu layout navbar-menu-general a00">
+				<Header className="a1">
 					<div className="menuCon a2">
-						<div className="top-menu row a3 container-prin">
+						<div className="row a3 container-prin">
 							<div className={'col-lg-12 container-pages a4 ' + classes.background}>
 								<Menu
 									className={'navbar-menu-sesion float-right nav-font-pages a5 ' + classes.background}
@@ -296,61 +303,76 @@ const Navegacion = (props) => {
 							</div>
 							{/* FIN DE AVATAR, TU CARRITO Y ENTRAR  */}
 						</div>
-						<div className="top-menu-responsive">
-							<Button type="link" className="barsMenu" onClick={showDrawer}>
-								<MenuOutlined className={"menu-responsivo-icon " + classes.background} style={{ fontSize: 22 }} />
-							</Button>
-							<Search
-								className="search-nav-responsive"
-								placeholder="input search text"
-								onSearch={(value) => props.history.push(`/searching/${value}`)}
-							/>
-							{!decoded || decoded.rol === true ? (
-								<div className="d-none" />
-							) : (
-								<div className="mx-4">
-									<Badge count={datosContx.carritoCantidad}>
-										<Link to="/shopping_cart">
-											<ShoppingOutlined
-												className={"menu-responsivo-icon " + classes.background}
-												style={{ fontSize: 28 }}
-											/>
-										</Link>
-									</Badge>
-								</div>
-							)}
-						</div>
-						<Drawer
-							className="drawer-background"
-							title={
-								datosContx.tienda && datosContx.tienda.length > 0 ? !datosContx.tienda[0].imagenLogo ? (
-									<div className="d-none" />
-								) : (
-									<div className="contenedor-logo">
-										<Link to="/">
-											<img
-												className="imagen-logo-principal"
-												alt="logotipo-tienda"
-												src={aws + datosContx.tienda[0].imagenLogo}
-											/>
-										</Link>
-									</div>
-								) : (
-									<div className="d-none" />
-								)
-							}
-							placement="left"
-							closable={false}
-							onClose={onClose}
-							visible={visible}
-						>
-							<RightMenu ofertas={datosContx.ofertas} tienda={datosContx.tienda} />
-						</Drawer>
+						
+						<NavegacionResponsive setOpenSearch={setOpenSearch} openSearch={openSearch} />
+
 					</div>
 				</Header>
 			</Layout>
+			<Layout className="layout top-menu-responsive">
+				<Header className={'a1 ' + classes.background}>
+					<div className="d-flex justify-content-center">
+						<Menu
+							className={'float-right navbar-menu-sesion a50 ' + classes.background}
+							/* theme="light" */
+							mode="horizontal"
+							defaultSelectedKeys={[ window.location.pathname ]}
+							inlineindent={0}
+						>
+							{/* COSAS IRRELEVANTES */}
+							<Menu.Item
+								className={'nav-font-color nav-border-color font-nav a6 ' + classes.hover}
+								key="/productos"
+							>
+								<div className="centrar-nav">Productos</div>
+								<Link to="/productos" />
+							</Menu.Item>
+							{datosContx.ofertas ? (
+								<Menu.Item
+									className={'nav-font-color nav-border-color font-nav a6 ' + classes.hover}
+									key="/ofertas"
+								>
+									<div className="centrar-nav">Ofertas</div>
+									<Link to="/ofertas" />
+								</Menu.Item>
+							) : (
+								<Menu.Item className="d-none" />
+							)}
+						</Menu>
+					</div>
+				</Header>
+			</Layout>
+			{/* PARA PODER MOSTRAR EL BUSCADOR DE LA PAGINA */}
+			{
+				openSearch === true ? (
+					<Layout className="layout">
+						<Header className={'a1 ' + classes.background}>
+							<div className="row">
+								<div className="col-10 mb-1 ml-2 mt-1">
+									<Search
+										className="search-nav-responsive"
+										placeholder="Busca tus productos"
+										style={{borderRadius: 25}}
+										onSearch={(value) => props.history.push(`/searching/${value}`)}
+									/>
+									
+								</div>
+								<div className="col-1 d-flex flex-row-reverse justify-content-center flex-wrap align-content-center">
+									<CloseCircleOutlined 
+										style={{fontSize: 23}}
+										onClick={() => setOpenSearch(!openSearch)}
+									/>
+								</div>
+								
+							</div>
+						</Header>
+					</Layout>
+				) : null
+			}
+			{/* TERMINA PODER MOSTRAR EL BUSCADOR DE LA PAGINA */}
 
-			<div className="d-none d-lg-block ">
+			{/* BARRA DE BUSQUEDA PRINCIPAL */}
+			<div className="d-none d-lg-block">
 				<Layout className="layout a01 ">
 					<Header className={"fondo-search a1 " + classes.navSecondary}>
 						<div className="menuCon a2">
@@ -358,7 +380,6 @@ const Navegacion = (props) => {
 								<div className="col-lg-12 a4 containe-categorias">
 									<div className="row input-search d-flex justify-content-center">
 										<Input onChange={valor} className="input-search border-color-search-input" />
-
 										<Button
 											onClick={(value) => props.history.push(`/searching/${busqueda}`)}
 											className="boton-search border-color-search-boton"
@@ -372,6 +393,7 @@ const Navegacion = (props) => {
 					</Header>
 				</Layout>
 			</div>
+
 		</div>
 	);
 };

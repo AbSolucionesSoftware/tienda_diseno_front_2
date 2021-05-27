@@ -107,6 +107,7 @@ export default function Card_Producto(props) {
 						>
 							<div className=" contenedor-titulos-productos titulo-elipsis">
 								<p className="font-secun titulo-producto">{productos.nombre}</p>
+								
 								<div
 									className="font-peque description "
 									dangerouslySetInnerHTML={{
