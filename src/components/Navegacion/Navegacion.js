@@ -89,19 +89,19 @@ const Navegacion = (props) => {
 
 	return (
 		<div>
-			<Layout className="top-menu layout navbar-menu-general a00">
+			<Layout className="layout navbar-menu-general a00">
 				<Header className="a1">
-					<div className="menuCon a2">
-						<div className="row a3 container-prin">
+					<div className={"menuCon a2 " + classes.background }>
+						<div className="top-menu row a3 container-prin">
 							<div className={'col-lg-12 container-pages a4 ' + classes.background}>
 								<Menu
-									className={'navbar-menu-sesion float-right nav-font-pages a5 ' + classes.background}
+									className={"navbar-menu-sesion float-right nav-font-pages a5 " + classes.background}
 									mode="horizontal"
 									defaultSelectedKeys={[ window.location.pathname ]}
 									inlineindent={0}
 								>
 									<Menu.Item
-										className={'nav-font-color nav-border-color font-nav-sec a6 ' + classes.hover}
+										className={'nav-font-color nav-border-color font-nav-sec a6 '  + classes.background + " " + classes.hover}
 										key="/blog"
 									>
 										<div className="centrar-nav">Blog</div>
@@ -110,7 +110,7 @@ const Navegacion = (props) => {
 									{datosContx.tienda && datosContx.tienda.length > 0 ? (
 										<Menu.Item
 											className={
-												'nav-font-color nav-border-color font-nav-sec a6 ' + classes.hover
+												'nav-font-color nav-border-color font-nav-sec a6 '  + classes.background + " " + classes.hover
 											}
 											key="/quienes_somos"
 										>
